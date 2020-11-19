@@ -1,0 +1,33 @@
+.Repositories {
+    width: 96%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 1599px) {
+    .Repositories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .Repositories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .Repositories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .Repositories {
+        grid-template-columns: 1fr;
+    }
+}

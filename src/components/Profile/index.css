@@ -1,0 +1,186 @@
+.Profile {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 4rem 2rem;
+
+    overflow: auto;
+}
+
+.Profile-description {
+    margin-bottom: 1.5rem;
+}
+
+.Profile a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.Profile a:hover {
+    text-decoration: underline;
+}
+
+.Profile .avatar {
+
+    --size: 64%;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border-radius: .75rem;
+
+    width: var(--size);
+    height: 0;
+
+    margin: 0 0 2rem;
+    padding-bottom: var(--size);
+}
+
+.Profile .username {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 1.5rem;
+}
+
+.Profile .login {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 1.05rem;
+    line-height: 1.2;
+}
+
+.Profile .bio {
+    font-size: 1.05rem;
+    margin-top: .5rem;
+}
+
+.Profile .email {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .email svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Profile .hireable {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .hireable svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Profile .company {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .company svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Profile .location {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .location svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Profile-status {
+    /*flex: 1 1 auto;*/
+}
+
+.Profile-links {
+    /*flex: 1 1 auto;*/
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.Profile-links a {
+    position: relative;
+    padding: .5rem 2.75rem .5rem .75rem;
+    background: transparent;
+    max-width: 32ch;
+}
+
+.Profile-links a:before {
+    clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 0% 100%, 0 51%, 0% 0%);
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    transform: translateY(-50%);
+
+    background: white;
+
+    width: 0;
+    height: 100%;
+
+    content: '';
+    display: block;
+
+    z-index: -1;
+}
+
+
+.Profile-links a.active {
+    color: black!important;
+}
+
+
+.Profile-links a.active:before {
+    width: 100%;
+}
+
+.Profile-links a:not(:first-of-type) {
+    margin-bottom: 4rem;
+}
+
+
+.Profile-footer {
+    /*position: absolute;
+    bottom: 10rem;*/
+}
+
+.Profile-footer button {
+    background: white;
+    color: black;
+    padding: .25rem 1rem;
+    font-size: 1.15rem;
+    user-select: none;
+}
