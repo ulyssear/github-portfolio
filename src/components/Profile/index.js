@@ -12,7 +12,7 @@ function Profile(props) {
     const {
         login, id, node_id, avatar_url, gravatar_id, url, html_url, followers_url, following_url, gists_url, company,
         starred_url, subscriptions_url, organizations_url, repos_url, events_url, received_events_url, type, site_admin,
-        name, location
+        name, location, bio
     } = props
 
     const style = {
@@ -22,10 +22,15 @@ function Profile(props) {
     return (
         <article className="Profile">
             <div className="avatar" style={style}></div>
-            {name ? <div className="username">{name}</div> : null}
-            {login ? <a href={html_url}><div className="login">@{login}</div></a> : null}
-            {company ? <div className="company"><FontAwesomeIcon icon={faUsers}/>&nbsp;{company}</div> : null}
-            {location ? <div className="location"><FontAwesomeIcon icon={faMapMarkedAlt}/>&nbsp;{location}</div> : null}
+            <div className="Profile-description">
+                {name ? <div className="username">{name}</div> : null}
+                {login ? <a href={html_url}><div className="login">@{login}</div></a> : null}
+                {bio ? <div className="bio">{bio}</div> : null}
+            </div>
+            <div className="Profile-status">
+                {company ? <div className="company"><FontAwesomeIcon icon={faUsers}/>&nbsp;{company}</div> : null}
+                {location ? <div className="location"><FontAwesomeIcon icon={faMapMarkedAlt}/>&nbsp;{location}</div> : null}
+            </div>
         </article>
     )
 

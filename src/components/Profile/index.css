@@ -9,6 +9,10 @@
     padding: 4rem 2rem;
 }
 
+.Profile-description {
+    margin-bottom: 1.5rem;
+}
+
 .Profile a {
     color: white;
     text-decoration: none;
@@ -53,8 +57,12 @@
     line-height: 1.2;
 }
 
+.Profile .bio {
+    font-size: 1.05rem;
+    margin-top: .5rem;
+}
+
 .Profile .company {
-    margin-top: 2rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -68,7 +76,6 @@
 }
 
 .Profile .location {
-    margin-top: .5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;

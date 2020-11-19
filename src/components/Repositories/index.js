@@ -4,7 +4,7 @@ import Repository from "../Repository";
 
 function Repositories (props) {
 
-    let {repositories} = props
+    let {repositories, handleRepositoryClick} = props
     if ('string' === typeof repositories) repositories = JSON.parse(repositories)
 
     console.log({repositories})
@@ -12,7 +12,7 @@ function Repositories (props) {
     return (
         <section className="Repositories">
             {repositories.map(repository => (
-                <Repository key={repository.id} {...repository} />
+                <Repository key={repository.id} {...repository} handleRepositoryClick={handleRepositoryClick} />
             ))}
         </section>
     )

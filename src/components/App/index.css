@@ -110,6 +110,8 @@
     background-size: cover;
 
     position: absolute;
+
+    overflow: auto;
 }
 
 .App-section-portfolio-profile {
@@ -119,6 +121,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+
+    position: sticky;
+    top: 0;
 }
 
 .App-section-portfolio-repositories {
