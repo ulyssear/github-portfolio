@@ -8,13 +8,18 @@
 
     cursor: pointer;
 
-    transition: 600ms ease-in-out;
+    transition: 100ms linear;
 
+    border: .15rem solid transparent;
     border-radius: .35rem;
 
     position: relative;
 
     overflow: hidden;
+}
+
+.Repository:hover {
+    border-color: white;
 }
 
 .Repository > * {
