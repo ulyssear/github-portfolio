@@ -61,6 +61,7 @@ class App extends React.Component {
                             <Profile {...profile} />
                         </aside>
                         <section className="App-section-portfolio-repositories">
+                            <h2>Repositories</h2>
                             <Repositories repositories={repositories}/>
                         </section>
                     </section>
