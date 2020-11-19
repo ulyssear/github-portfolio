@@ -132,7 +132,12 @@ class App extends React.Component {
     handleRepositoryClick(event) {
         event.preventDefault()
 
-        const {target} = event
+        let {target} = event
+
+        if (!target.classList.contains('Repository')) {
+            target = target.closest('.Repository')
+        }
+
         const {url} = target.dataset
 
         window.location.href = url
