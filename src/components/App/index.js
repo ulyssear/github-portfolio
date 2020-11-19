@@ -128,6 +128,7 @@ class App extends React.Component {
                 if (!!message && 'Not Found' === message) {
                     App.handleErrorUnknownUser()
                     App.setLoadingMessage('')
+                    App.enableSubmitInFormGithubProfile()
                     return
                 }
 
@@ -144,6 +145,7 @@ class App extends React.Component {
                         this.updateRepositories(repositories)
 
                         App.setLoadingMessage('')
+                        App.enableSubmitInFormGithubProfile()
 
                         App.showPortfolioSection()
 
@@ -151,15 +153,15 @@ class App extends React.Component {
                     .catch(reason => {
                         console.error(reason)
                         App.setLoadingMessage('')
+                        App.enableSubmitInFormGithubProfile()
                     })
             })
             .catch(reason => {
                 console.error(reason)
                 App.setLoadingMessage('')
-            })
-            .finally(() => {
                 App.enableSubmitInFormGithubProfile()
             })
+            .finally(() => {})
     }
 
 
