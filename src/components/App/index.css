@@ -80,6 +80,10 @@
     top: 0;
 }
 
+.App-section-main form[name="github-profile"].has-error-api-rate-limit-exceeded small.error-helper[aria-labelledby="api-rate-limit-exceeded"] {
+    top: 0;
+}
+
 .App-section-main form[name="github-profile"].has-error-unknown-user small.error-helper[aria-labelledby="unknown-user"] {
     top: 0;
 }

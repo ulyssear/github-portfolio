@@ -65,6 +65,7 @@ class App extends React.Component {
                                     <small className="error-helper" aria-labelledby="unknown-user">Unknown user</small>
                                     <small className="error-helper" aria-labelledby="invalid-username">Invalid
                                         username</small>
+                                    <small className="error-helper" aria-labelledby="api-rate-limit-exceeded">API rate limit exceeded</small>
                                 </aside>
                             </form>
                             <div className="App-section-main-loading-wrapper"></div>
@@ -133,12 +134,20 @@ class App extends React.Component {
                     return
                 }
 
+                console.log('gooo', {message, foo: !!message && message.toLowerCase().includes('api rate limit exceeded for')})
+                if (!!message && message.toLowerCase().includes('api rate limit exceeded for')) {
+                    App.handleErrorAPIRateLimitExceeded()
+                    App.setLoadingMessage('')
+                    App.enableSubmitInFormGithubProfile()
+                    return
+                }
+
                 App.removeClassHasErrorForFormGithubProfile()
 
                 this.updateProfile(profile)
                 let {repos_url, gists_url} = profile
 
-                gists_url = gists_url.replace('{/gist_id}', '')
+                if (!!gists_url && 'string' === typeof gists_url) gists_url = gists_url.replace('{/gist_id}', '')
 
                 App.setLoadingMessage('Retrieving repositories')
 
@@ -304,12 +313,20 @@ class App extends React.Component {
 
     static handleErrorUnknownUser() {
         App.removeClassHasErrorForFormGithubProfile('invalid-username')
+        App.removeClassHasErrorForFormGithubProfile('api-rate-limit-exceeded')
         App.addClassHasErrorForFormGithubProfile('unknown-user')
+    }
+
+    static handleErrorAPIRateLimitExceeded() {
+        App.removeClassHasErrorForFormGithubProfile('invalid-username')
+        App.removeClassHasErrorForFormGithubProfile('unknown-user')
+        App.addClassHasErrorForFormGithubProfile('api-rate-limit-exceeded')
     }
 
 
     static handleErrorInvalidUsername() {
         App.removeClassHasErrorForFormGithubProfile('unknown-user')
+        App.removeClassHasErrorForFormGithubProfile('api-rate-limit-exceeded')
         App.addClassHasErrorForFormGithubProfile('invalid-username')
     }
 
@@ -331,6 +348,7 @@ class App extends React.Component {
         formGithubProfile.classList.remove('has-error')
         formGithubProfile.classList.remove('has-error-unknown-user')
         formGithubProfile.classList.remove('has-error-invalid-username')
+        formGithubProfile.classList.remove('has-error-api-rate-limit-exceeded')
     }
 
 
