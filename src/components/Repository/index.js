@@ -11,6 +11,11 @@ function Repository (props) {
 
     return (
         <article className="Repository" data-url={html_url} onClick={handleRepositoryClick} data-is-fork={fork}>
+            <div className="Repository-labels">
+                {
+                    fork ? <span class="Repository-labels-fork"><FontAwesomeIcon icon={faCodeBranch}/>&nbsp;Fork</span> : null
+                }
+            </div>
             <span className="Repository-name">{name}</span>
             <span className="Repository-description">{description}</span>
             <div className="Repository-infos">

@@ -11,11 +11,16 @@
     transition: 600ms ease-in-out;
 
     border-radius: .35rem;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
 .Repository-name {
     font-weight: bold;
     font-size: 1.15rem;
+    margin-top: .5rem;
 }
 
 .Repository-description {
@@ -42,4 +47,21 @@
 
 .Repository.hide {
     display: none;
+}
+
+.Repository-labels {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: flex;
+}
+
+.Repository-labels-fork {
+    background: white;
+    color: black;
+
+    width: 3rem;
+    font-size: .85rem;
+    padding: .25rem .25rem .25rem .75rem;
 }
