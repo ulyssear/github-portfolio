@@ -1,0 +1,63 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.App-section {
+  flex: 1 1 auto;
+
+  background-color: var(--dark);
+  color: white;
+
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.App-section-main h1 {
+  font-size: 2rem;
+  margin-bottom: 5rem;
+}
+
+.App-section-main form[name="github-profile"] .form-group {
+  position: relative;
+}
+
+.App-section-main form[name="github-profile"] input[name="username"] {
+  padding: 1rem 1.75rem;
+  font-size: 2rem;
+
+  background: black;
+  border: .15rem solid var(--light);
+  color: white;
+
+  z-index: 1;
+}
+
+.App-section-main form[name="github-profile"] input[name="username"] + label {
+  position: absolute;
+  left: 2rem;
+  transition: 150ms ease-in-out;
+}
+
+.App-section-main form[name="github-profile"] input[name="username"]:placeholder-shown + label {
+  transform: translateY(calc(-50% - .15rem));
+  top: 50%;
+  font-size: 2rem;
+}
+
+.App-section-main form[name="github-profile"] input[name="username"]:not(:placeholder-shown) + label,
+.App-section-main form[name="github-profile"] input[name="username"]:focus + label {
+  transform: translateY(-100%);
+  top: 0;
+  left: 0;
+  font-size: 1.25rem;
+}
