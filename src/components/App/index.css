@@ -137,6 +137,16 @@
     font-size: 1.25rem;
 }
 
+.App-section-main-loading-wrapper {
+    text-align: center;
+    font-size: 1.25rem;
+    padding: 1.25rem;
+    min-height: 6rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /**
  * Portfolio section

@@ -10,6 +10,7 @@ import Repositories from "../Repositories";
 
 class App extends React.Component {
 
+    static KEY_GISTS_CACHE = 'github_portfolio_gists_cache'
     static KEY_PROFILE_CACHE = 'github_portfolio_profile_cache'
     static KEY_REPOSITORIES_CACHE = 'github_portfolio_repositories_cache'
     static KEY_REPOSITORIES_VISIBILITY_CACHE = 'github_portfolio_repositories_visibility_cache'
@@ -65,6 +66,7 @@ class App extends React.Component {
                                         username</small>
                                 </aside>
                             </form>
+                            <div className="App-section-main-loading-wrapper"></div>
                         </div>
                     </section>
                     <section className="App-section-portfolio hide">
@@ -75,7 +77,7 @@ class App extends React.Component {
                             <header className="App-section-portfolio-repositories-header">
                                 <h2>Repositories</h2>
                                 <div className="App-section-portfolio-repositories-actions">
-                                    <div className="list-button">
+                                    <div className="list-button" data-name="repositories-visibility">
                                         <button className="active" data-value="all"
                                                 onClick={this.handleRepositoriesVisibilityClick}>All
                                         </button>
@@ -88,8 +90,9 @@ class App extends React.Component {
                                     </div>
                                 </div>
                             </header>
-                            <Repositories repositories={repositories}
-                                          handleRepositoryClick={this.handleRepositoryClick}/>
+                            <Repositories
+                                repositories={repositories}
+                                handleRepositoryClick={this.handleRepositoryClick} />
                         </section>
                     </section>
                 </section>
@@ -114,6 +117,8 @@ class App extends React.Component {
             return
         }
 
+        App.setLoadingMessage('Récupération du profil')
+
         const endpoint = `https://api.github.com/users/${username}`
         fetch(endpoint)
             .then(response => response.json())
@@ -122,6 +127,7 @@ class App extends React.Component {
 
                 if (!!message && 'Not Found' === message) {
                     App.handleErrorUnknownUser()
+                    App.setLoadingMessage('')
                     return
                 }
 
@@ -130,17 +136,27 @@ class App extends React.Component {
                 this.updateProfile(profile)
                 const {repos_url} = profile
 
+                App.setLoadingMessage('Récupération des répertoires')
+
                 fetch(repos_url)
                     .then(response => response.json())
                     .then(repositories => {
-
                         this.updateRepositories(repositories)
+
+                        App.setLoadingMessage('')
+
                         App.showPortfolioSection()
 
                     })
-                    .catch(reason => console.error)
+                    .catch(reason => {
+                        console.error(reason)
+                        App.setLoadingMessage('')
+                    })
             })
-            .catch(reason => console.error)
+            .catch(reason => {
+                console.error(reason)
+                App.setLoadingMessage('')
+            })
             .finally(() => {
                 App.enableSubmitInFormGithubProfile()
             })
@@ -214,6 +230,8 @@ class App extends React.Component {
         mainSection.classList.add('hide')
 
         portfolioSection.scroll({top: 0})
+
+        App.clickOnRepositoriesVisibilityAll()
     }
 
 
@@ -315,6 +333,17 @@ class App extends React.Component {
         event.preventDefault()
 
         App.showMainSection()
+    }
+
+    static setLoadingMessage(message) {
+        const loadingWrapper = document.querySelector('.App-section-main-loading-wrapper')
+        loadingWrapper.innerHTML = message
+    }
+
+    static clickOnRepositoriesVisibilityAll() {
+        const repositoriesVisibility = document.querySelector('.list-button[data-name="repositories-visibility"]')
+        const allButton = repositoriesVisibility.querySelector('button[data-value="all"]')
+        allButton.click()
     }
 
 }
