@@ -57,7 +57,10 @@ class App extends React.Component {
                                 </div>
                                 <button role="button" type="submit" onClick={this.handleSubmit}><FontAwesomeIcon
                                     icon={faArrowCircleRight}/></button>
-                                <small className="error-helper">Unknown user</small>
+                                <aside class="error-helper-wrapper">
+                                    <small className="error-helper" aria-labelledby="unknown-user">Unknown user</small>
+                                    <small className="error-helper" aria-labelledby="invalid-username">Invalid username</small>
+                                </aside>
                             </form>
                         </div>
                     </section>
@@ -91,6 +94,11 @@ class App extends React.Component {
         const formGithubProfile = document.forms['github-profile']
         const username = formGithubProfile.elements.username.value
 
+        if (!username) {
+            App.handleErrorInvalidUsername()
+            return
+        }
+
         const endpoint = `https://api.github.com/users/${username}`
         fetch(endpoint)
             .then(response => response.json())
@@ -98,7 +106,7 @@ class App extends React.Component {
                 const {message} = profile
 
                 if (!!message && 'Not Found' === message) {
-                    App.handleErrorFetch()
+                    App.handleErrorUnknownUser()
                     return
                 }
 
@@ -225,18 +233,28 @@ class App extends React.Component {
     }
 
 
-    static handleErrorFetch() {
-        App.addClassHasErrorForFormGithubProfile()
+    static handleErrorUnknownUser() {
+        App.removeClassHasErrorForFormGithubProfile('invalid-username')
+        App.addClassHasErrorForFormGithubProfile('unknown-user')
     }
 
-    static addClassHasErrorForFormGithubProfile() {
+
+    static handleErrorInvalidUsername() {
+        App.removeClassHasErrorForFormGithubProfile('unknown-user')
+        App.addClassHasErrorForFormGithubProfile('invalid-username')
+    }
+
+    static addClassHasErrorForFormGithubProfile(type = 'unknown-user') {
         const formGithubProfile = document.forms['github-profile']
         formGithubProfile.classList.add('has-error')
+        formGithubProfile.classList.add('has-error-' + type)
     }
 
     static removeClassHasErrorForFormGithubProfile() {
         const formGithubProfile = document.forms['github-profile']
         formGithubProfile.classList.remove('has-error')
+        formGithubProfile.classList.remove('has-error-unknown-user')
+        formGithubProfile.classList.remove('has-error-invalid-username')
     }
 
 
