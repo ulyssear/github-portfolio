@@ -10,7 +10,7 @@ function Repositories(props) {
     return (
         <section className="Repositories">
             {
-                !! repositories ? repositories.map(repository => (
+                0 < repositories.length ? repositories.map(repository => (
                     <Repository key={repository.id} {...repository} handleRepositoryClick={handleRepositoryClick}/>
                 )) : (
                     <article>No repository found</article>
