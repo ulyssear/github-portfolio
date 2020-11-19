@@ -4,6 +4,7 @@ import React from "react";
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons'
+
 import Profile from "../Profile";
 import Repositories from "../Repositories";
 
@@ -26,11 +27,12 @@ class App extends React.Component {
 
 
     componentDidMount() {
-
+        document.addEventListener('keydown', App.handleDocumentKeypress, false)
     }
 
 
     componentWillUnmount() {
+        document.removeEventListener('keydown', App.handleDocumentKeypress, false)
     }
 
 
@@ -59,7 +61,7 @@ class App extends React.Component {
                             <Profile {...profile} />
                         </aside>
                         <section className="App-section-portfolio-repositories">
-                            <Repositories repositories={repositories} />
+                            <Repositories repositories={repositories}/>
                         </section>
                     </section>
                 </section>
@@ -88,6 +90,7 @@ class App extends React.Component {
                         App.showPortfolioSection()
 
                     })
+                    .catch(reason => console.log)
                 /* const {
                     id, node_id, name, full_name, private, owner, html_url, description, fork, url, forks_url, keys_url,
                     collaborators_url, teams_url, hooks_url, issue_events_url, events_url, assignees_url, branches_url,
@@ -138,6 +141,12 @@ class App extends React.Component {
 
         const portfolioSection = document.querySelector('.App-section-portfolio')
         portfolioSection.classList.add('hide')
+    }
+
+
+    static handleDocumentKeypress(event) {
+        const {keyCode} = event
+        if (27 === keyCode) App.showMainSection()
     }
 
 }

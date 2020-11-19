@@ -9,9 +9,19 @@
     padding: 4rem 2rem;
 }
 
+.Profile a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.Profile a:hover {
+    text-decoration: underline;
+}
+
 .Profile .avatar {
 
-    --size: 100%;
+    --size: 64%;
 
     background-position: center;
     background-size: cover;
@@ -22,14 +32,51 @@
     width: var(--size);
     height: 0;
 
-    margin: 0 auto;
+    margin: 0 0 2rem;
     padding-bottom: var(--size);
 }
 
 .Profile .username {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.Profile .login {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 1.05rem;
+    line-height: 1.2;
+}
+
+.Profile .company {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .company svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Profile .location {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.Profile .location svg[data-prefix="fas"] {
+    margin-right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }

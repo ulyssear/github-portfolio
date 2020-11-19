@@ -105,7 +105,7 @@
     height: 100vh;
     width: 100vw;
 
-    background-image: linear-gradient(90deg, transparent 0%, #000000AA 25%, #000000CC 30%, #000000EE 100%), url(../../assets/portfolio-background.jpg);
+    background-image: linear-gradient(90deg, transparent 0%, #000000AA 33.3334%, #000000CC 40%, #000000EE 100%), url(../../assets/portfolio-background.jpg);
     background-position: center right;
     background-size: cover;
 
@@ -113,7 +113,7 @@
 }
 
 .App-section-portfolio-profile {
-    width: 25%;
+    width: 33.3334%;
     height: 100%;
 
     display: flex;
@@ -143,7 +143,7 @@
 
 .hide {
     opacity: 0;
-    transition: opacity 600ms ease-out 300ms, transform 600ms ease-in-out;
+    transition: opacity 600ms ease-out, transform 600ms ease-in-out;
 }
 
 .App-section-main.hide {
