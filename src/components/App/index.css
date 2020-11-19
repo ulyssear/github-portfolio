@@ -1,63 +1,155 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .App-section {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 
-  background-color: var(--dark);
-  color: white;
+    background-color: var(--dark);
+    color: white;
 
-  height: 100vh;
+    height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: block;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  position: relative;
+    position: relative;
+}
+
+
+/**
+ * Main section
+ */
+
+.App-section-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    position: absolute;
 }
 
 .App-section-main h1 {
-  font-size: 2rem;
-  margin-bottom: 5rem;
+    font-size: 2rem;
+    margin-bottom: 5rem;
+}
+
+.App-section-main form[name="github-profile"] {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
 }
 
 .App-section-main form[name="github-profile"] .form-group {
-  position: relative;
+    position: relative;
+}
+
+.App-section-main form[name="github-profile"] button[type="submit"] {
+    font-size: 2rem;
+
+    width: 8rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .App-section-main form[name="github-profile"] input[name="username"] {
-  padding: 1rem 1.75rem;
-  font-size: 2rem;
+    padding: 1rem 1.75rem;
+    font-size: 2rem;
 
-  background: black;
-  border: .15rem solid var(--light);
-  color: white;
+    background: black;
+    border: .15rem solid var(--light);
+    color: white;
 
-  z-index: 1;
+    z-index: 1;
 }
 
 .App-section-main form[name="github-profile"] input[name="username"] + label {
-  position: absolute;
-  left: 2rem;
-  transition: 150ms ease-in-out;
+    position: absolute;
+    left: 2rem;
+    transition: 150ms ease-in-out;
 }
 
 .App-section-main form[name="github-profile"] input[name="username"]:placeholder-shown + label {
-  transform: translateY(calc(-50% - .15rem));
-  top: 50%;
-  font-size: 2rem;
+    transform: translateY(calc(-50% - .15rem));
+    top: 50%;
+    font-size: 2rem;
 }
 
 .App-section-main form[name="github-profile"] input[name="username"]:not(:placeholder-shown) + label,
 .App-section-main form[name="github-profile"] input[name="username"]:focus + label {
-  transform: translateY(-100%);
-  top: 0;
-  left: 0;
-  font-size: 1.25rem;
+    transform: translateY(-100%);
+    top: 0;
+    left: 0;
+    font-size: 1.25rem;
+}
+
+
+/**
+ * Portfolio section
+ */
+.App-section-portfolio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-image: linear-gradient(90deg, transparent 0%, #000000AA 25%, #000000CC 30%, #000000EE 100%), url(../../assets/portfolio-background.jpg);
+    background-position: center right;
+    background-size: cover;
+
+    position: absolute;
+}
+
+.App-section-portfolio-profile {
+    width: 25%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.App-section-portfolio-repositories {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/**
+ * Animations
+ */
+
+/* Hide & Show */
+
+.show {
+    top: 0;
+    opacity: 1;
+    transition: opacity 600ms ease-out 300ms, transform 600ms ease-in-out;
+}
+
+.hide {
+    opacity: 0;
+    transition: opacity 600ms ease-out 300ms, transform 600ms ease-in-out;
+}
+
+.App-section-main.hide {
+    transform: translateY(-100%)
+}
+
+.App-section-portfolio.hide {
+    transform: translateY(100%)
 }

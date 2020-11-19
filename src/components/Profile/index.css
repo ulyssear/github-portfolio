@@ -1,0 +1,35 @@
+.Profile {
+    width: 100%;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 4rem 2rem;
+}
+
+.Profile .avatar {
+
+    --size: 100%;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border-radius: .75rem;
+
+    width: var(--size);
+    height: 0;
+
+    margin: 0 auto;
+    padding-bottom: var(--size);
+}
+
+.Profile .username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.75rem;
+}
