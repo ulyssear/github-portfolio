@@ -81,7 +81,7 @@
 }
 
 .App-section-main form[name="github-profile"].has-error-unknown-user small.error-helper[aria-labelledby="unknown-user"] {
-  top: 0;
+    top: 0;
 }
 
 .App-section-main form[name="github-profile"] .form-group {
@@ -186,13 +186,15 @@
     padding-right: 4%;
 }
 
-.App-section-portfolio-repositories-header > h2{
+.App-section-portfolio-repositories-header > h2 {
     flex: 1 1 auto;
+    user-select: none;
 }
 
-.App-section-portfolio-repositories-actions {}
+.App-section-portfolio-repositories-actions {
+}
 
-.App-section-portfolio-repositories-actions input[name="repositories_visibility"]{
+.App-section-portfolio-repositories-actions input[name="repositories_visibility"] {
     display: none;
 }
 
@@ -241,6 +243,8 @@
     color: white;
 
     cursor: pointer;
+
+    user-select: none;
 }
 
 .list-button button.active {

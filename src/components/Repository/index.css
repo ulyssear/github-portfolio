@@ -17,6 +17,11 @@
     overflow: hidden;
 }
 
+.Repository > * {
+    pointer-events: none;
+    user-select: none;
+}
+
 .Repository-name {
     font-weight: bold;
     font-size: 1.15rem;
