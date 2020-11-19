@@ -17,7 +17,7 @@ class App extends React.Component {
     state = {
         profile: localStorage.getItem(App.KEY_PROFILE_CACHE),
         repositories: localStorage.getItem(App.KEY_REPOSITORIES_CACHE),
-        repositoriesVisibility : localStorage.getItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE)
+        repositoriesVisibility: localStorage.getItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE)
     }
 
     constructor(props) {
@@ -55,11 +55,14 @@ class App extends React.Component {
                                     <input type="text" name="username" id="username" placeholder=" "/>
                                     <label htmlFor="username">Pseudo Github</label>
                                 </div>
-                                <button role="button" type="submit" onClick={this.handleSubmit}><FontAwesomeIcon
-                                    icon={faArrowCircleRight}/></button>
-                                <aside class="error-helper-wrapper">
+                                <button role="button" type="submit" name="submit_github_profile"
+                                        onClick={this.handleSubmit}>
+                                    <FontAwesomeIcon icon={faArrowCircleRight}/>
+                                </button>
+                                <aside className="error-helper-wrapper">
                                     <small className="error-helper" aria-labelledby="unknown-user">Unknown user</small>
-                                    <small className="error-helper" aria-labelledby="invalid-username">Invalid username</small>
+                                    <small className="error-helper" aria-labelledby="invalid-username">Invalid
+                                        username</small>
                                 </aside>
                             </form>
                         </div>
@@ -73,13 +76,20 @@ class App extends React.Component {
                                 <h2>Repositories</h2>
                                 <div className="App-section-portfolio-repositories-actions">
                                     <div className="list-button">
-                                        <button className="active" data-value="all" onClick={this.handleRepositoriesVisibilityClick}>All</button>
-                                        <button data-value="owns" onClick={this.handleRepositoriesVisibilityClick}>Owns</button>
-                                        <button data-value="forks" onClick={this.handleRepositoriesVisibilityClick}>Forks</button>
+                                        <button className="active" data-value="all"
+                                                onClick={this.handleRepositoriesVisibilityClick}>All
+                                        </button>
+                                        <button data-value="owns"
+                                                onClick={this.handleRepositoriesVisibilityClick}>Owns
+                                        </button>
+                                        <button data-value="forks"
+                                                onClick={this.handleRepositoriesVisibilityClick}>Forks
+                                        </button>
                                     </div>
                                 </div>
                             </header>
-                            <Repositories repositories={repositories} handleRepositoryClick={this.handleRepositoryClick}/>
+                            <Repositories repositories={repositories}
+                                          handleRepositoryClick={this.handleRepositoryClick}/>
                         </section>
                     </section>
                 </section>
@@ -91,11 +101,16 @@ class App extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
+        if (false === App.isEnableSubmitInFormGithubProfile()) return
+
+        App.disableSubmitInFormGithubProfile()
+
         const formGithubProfile = document.forms['github-profile']
         const username = formGithubProfile.elements.username.value
 
         if (!username) {
             App.handleErrorInvalidUsername()
+            App.enableSubmitInFormGithubProfile()
             return
         }
 
@@ -126,6 +141,9 @@ class App extends React.Component {
                     .catch(reason => console.error)
             })
             .catch(reason => console.error)
+            .finally(() => {
+                App.enableSubmitInFormGithubProfile()
+            })
     }
 
 
@@ -250,7 +268,7 @@ class App extends React.Component {
     }
 
 
-    static addClassHasErrorForFormGithubProfile(type ) {
+    static addClassHasErrorForFormGithubProfile(type) {
         const formGithubProfile = document.forms['github-profile']
         formGithubProfile.classList.add('has-error')
         formGithubProfile.classList.add('has-error-' + type)
@@ -267,6 +285,27 @@ class App extends React.Component {
         formGithubProfile.classList.remove('has-error')
         formGithubProfile.classList.remove('has-error-unknown-user')
         formGithubProfile.classList.remove('has-error-invalid-username')
+    }
+
+
+    static disableSubmitInFormGithubProfile() {
+        const formGithubProfile = document.forms['github-profile']
+        const submitButton = formGithubProfile.elements['submit_github_profile']
+        submitButton.setAttribute('disabled', 'disabled')
+    }
+
+
+    static enableSubmitInFormGithubProfile() {
+        const formGithubProfile = document.forms['github-profile']
+        const submitButton = formGithubProfile.elements['submit_github_profile']
+        submitButton.removeAttribute('disabled')
+    }
+
+
+    static isEnableSubmitInFormGithubProfile() {
+        const formGithubProfile = document.forms['github-profile']
+        const submitButton = formGithubProfile.elements['submit_github_profile']
+        return false === submitButton.hasAttribute('disabled')
     }
 
 
