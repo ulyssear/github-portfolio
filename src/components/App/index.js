@@ -123,7 +123,7 @@ class App extends React.Component {
                         App.showPortfolioSection()
 
                     })
-                    .catch(reason => console.log)
+                    .catch(reason => console.error)
             })
             .catch(reason => console.error)
     }
@@ -244,11 +244,18 @@ class App extends React.Component {
         App.addClassHasErrorForFormGithubProfile('invalid-username')
     }
 
-    static addClassHasErrorForFormGithubProfile(type = 'unknown-user') {
+
+    static addClassHasErrorForFormGithubProfile(type ) {
         const formGithubProfile = document.forms['github-profile']
         formGithubProfile.classList.add('has-error')
         formGithubProfile.classList.add('has-error-' + type)
+
+        setTimeout(() => {
+            formGithubProfile.classList.remove('has-error')
+            formGithubProfile.classList.remove('has-error-' + type)
+        }, 3000)
     }
+
 
     static removeClassHasErrorForFormGithubProfile() {
         const formGithubProfile = document.forms['github-profile']
