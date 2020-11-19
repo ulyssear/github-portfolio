@@ -16,6 +16,7 @@ class App extends React.Component {
     static KEY_REPOSITORIES_VISIBILITY_CACHE = 'github_portfolio_repositories_visibility_cache'
 
     state = {
+        gists: localStorage.getItem(App.KEY_GISTS_CACHE),
         profile: localStorage.getItem(App.KEY_PROFILE_CACHE),
         repositories: localStorage.getItem(App.KEY_REPOSITORIES_CACHE),
         repositoriesVisibility: localStorage.getItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE)
@@ -117,7 +118,7 @@ class App extends React.Component {
             return
         }
 
-        App.setLoadingMessage('Récupération du profil')
+        App.setLoadingMessage('Retrieving github profile')
 
         const endpoint = `https://api.github.com/users/${username}`
         fetch(endpoint)
@@ -135,19 +136,34 @@ class App extends React.Component {
                 App.removeClassHasErrorForFormGithubProfile()
 
                 this.updateProfile(profile)
-                const {repos_url} = profile
+                let {repos_url, gists_url} = profile
 
-                App.setLoadingMessage('Récupération des répertoires')
+                gists_url = gists_url.replace('{/gist_id}', '')
+
+                App.setLoadingMessage('Retrieving repositories')
 
                 fetch(repos_url)
                     .then(response => response.json())
                     .then(repositories => {
                         this.updateRepositories(repositories)
 
-                        App.setLoadingMessage('')
-                        App.enableSubmitInFormGithubProfile()
+                        App.setLoadingMessage('Retrieving gists')
 
-                        App.showPortfolioSection()
+                        fetch(gists_url)
+                            .then(response => response.json())
+                            .then(gists => {
+                                this.updateGists(gists)
+
+                                App.setLoadingMessage('')
+                                App.enableSubmitInFormGithubProfile()
+
+                                App.showPortfolioSection()
+                            })
+                            .catch(reason => {
+                                console.error(reason)
+                                App.setLoadingMessage('')
+                                App.enableSubmitInFormGithubProfile()
+                            })
 
                     })
                     .catch(reason => {
@@ -213,6 +229,14 @@ class App extends React.Component {
         if (!repositories) repositories = {}
         localStorage.setItem(App.KEY_REPOSITORIES_CACHE, JSON.stringify(repositories))
         this.setState({repositories})
+    }
+
+
+    updateGists(gists = {}) {
+        console.log('App : updateGists()', {gists})
+        if (!gists) gists = {}
+        localStorage.setItem(App.KEY_GISTS_CACHE, JSON.stringify(gists))
+        this.setState({gists})
     }
 
 

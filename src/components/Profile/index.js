@@ -37,7 +37,7 @@ function Profile(props) {
                 <a href="#" className="active">Repositories</a>
             </div>
             <div className="Profile-footer">
-                <button onClick={handleBackClick}>Retour</button>
+                <button onClick={handleBackClick}>Back</button>
             </div>
         </article>
     )
