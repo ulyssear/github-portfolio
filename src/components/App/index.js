@@ -57,6 +57,7 @@ class App extends React.Component {
                                 </div>
                                 <button role="button" type="submit" onClick={this.handleSubmit}><FontAwesomeIcon
                                     icon={faArrowCircleRight}/></button>
+                                <small className="error-helper">Unknown user</small>
                             </form>
                         </div>
                     </section>
@@ -94,6 +95,15 @@ class App extends React.Component {
         fetch(endpoint)
             .then(response => response.json())
             .then(profile => {
+                const {message} = profile
+
+                if (!!message && 'Not Found' === message) {
+                    App.handleErrorFetch()
+                    return
+                }
+
+                App.removeClassHasErrorForFormGithubProfile()
+
                 this.updateProfile(profile)
                 const {repos_url} = profile
 
@@ -107,7 +117,7 @@ class App extends React.Component {
                     })
                     .catch(reason => console.log)
             })
-            .catch(reason => console.log)
+            .catch(reason => console.error)
     }
 
 
@@ -212,6 +222,21 @@ class App extends React.Component {
             repository.classList.remove('hide')
 
         }
+    }
+
+
+    static handleErrorFetch() {
+        App.addClassHasErrorForFormGithubProfile()
+    }
+
+    static addClassHasErrorForFormGithubProfile() {
+        const formGithubProfile = document.forms['github-profile']
+        formGithubProfile.classList.add('has-error')
+    }
+
+    static removeClassHasErrorForFormGithubProfile() {
+        const formGithubProfile = document.forms['github-profile']
+        formGithubProfile.classList.remove('has-error')
     }
 
 

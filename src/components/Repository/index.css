@@ -9,6 +9,8 @@
     cursor: pointer;
 
     transition: 600ms ease-in-out;
+
+    border-radius: .35rem;
 }
 
 .Repository-name {
