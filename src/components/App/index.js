@@ -212,6 +212,8 @@ class App extends React.Component {
 
         const mainSection = document.querySelector('.App-section-main')
         mainSection.classList.add('hide')
+
+        portfolioSection.scroll({top: 0})
     }
 
 
