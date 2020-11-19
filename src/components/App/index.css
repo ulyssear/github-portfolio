@@ -133,6 +133,26 @@
     margin: 4rem 0;
 }
 
+.App-section-portfolio-repositories-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 4%;
+}
+
+.App-section-portfolio-repositories-header > h2{
+    flex: 1 1 auto;
+}
+
+.App-section-portfolio-repositories-actions {
+    position: sticky;
+    top: 0;
+}
+
+.App-section-portfolio-repositories-actions input[name="repositories_visibility"]{
+    display: none;
+}
+
 /**
  * Animations
  */
@@ -156,4 +176,35 @@
 
 .App-section-portfolio.hide {
     transform: translateY(100%)
+}
+
+/*
+ * Miscellenaous
+ */
+
+.list-button {
+    display: inline-flex;
+    border: .1rem solid white;
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.list-button button {
+    padding: .35rem .85rem;
+    font-size: 1.05rem;
+
+    background: transparent;
+    border: 0;
+    color: white;
+
+    cursor: pointer;
+}
+
+.list-button button.active {
+    background: white;
+    color: black;
+}
+
+.list-button button:not(:first-of-type) {
+    border-left: .075rem solid white;
 }

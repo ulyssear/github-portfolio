@@ -7,10 +7,10 @@ import React from "react";
 
 function Repository (props) {
 
-    const {name, description, language, stargazers_count, forks, html_url, handleRepositoryClick} = props
+    const {name, description, language, stargazers_count, forks, html_url, handleRepositoryClick, fork} = props
 
     return (
-        <article className="Repository" data-url={html_url} onClick={handleRepositoryClick}>
+        <article className="Repository" data-url={html_url} onClick={handleRepositoryClick} data-is-fork={fork}>
             <span className="Repository-name">{name}</span>
             <span className="Repository-description">{description}</span>
             <div className="Repository-infos">

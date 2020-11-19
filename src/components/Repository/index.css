@@ -7,6 +7,8 @@
     flex-direction: column;
 
     cursor: pointer;
+
+    transition: 600ms ease-in-out;
 }
 
 .Repository-name {
@@ -34,4 +36,8 @@
 
 .Repository-infos-language {
     flex: 1 1 auto;
+}
+
+.Repository.hide {
+    display: none;
 }

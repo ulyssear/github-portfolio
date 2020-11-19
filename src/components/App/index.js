@@ -12,10 +12,12 @@ class App extends React.Component {
 
     static KEY_PROFILE_CACHE = 'github_portfolio_profile_cache'
     static KEY_REPOSITORIES_CACHE = 'github_portfolio_repositories_cache'
+    static KEY_REPOSITORIES_VISIBILITY_CACHE = 'github_portfolio_repositories_visibility_cache'
 
     state = {
         profile: localStorage.getItem(App.KEY_PROFILE_CACHE),
-        repositories: localStorage.getItem(App.KEY_REPOSITORIES_CACHE)
+        repositories: localStorage.getItem(App.KEY_REPOSITORIES_CACHE),
+        repositoriesVisibility : localStorage.getItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE)
     }
 
     constructor(props) {
@@ -24,6 +26,7 @@ class App extends React.Component {
         this.updateProfile = this.updateProfile.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleRepositoryClick = this.handleRepositoryClick.bind(this)
+        this.handleRepositoriesVisibilityClick = this.handleRepositoriesVisibilityClick.bind(this)
     }
 
 
@@ -62,7 +65,16 @@ class App extends React.Component {
                             <Profile {...profile} />
                         </aside>
                         <section className="App-section-portfolio-repositories">
-                            <h2>Repositories</h2>
+                            <header className="App-section-portfolio-repositories-header">
+                                <h2>Repositories</h2>
+                                <div className="App-section-portfolio-repositories-actions">
+                                    <div className="list-button">
+                                        <button className="active" data-value="all" onClick={this.handleRepositoriesVisibilityClick}>All</button>
+                                        <button data-value="owns" onClick={this.handleRepositoriesVisibilityClick}>Owns</button>
+                                        <button data-value="forks" onClick={this.handleRepositoriesVisibilityClick}>Forks</button>
+                                    </div>
+                                </div>
+                            </header>
                             <Repositories repositories={repositories} handleRepositoryClick={this.handleRepositoryClick}/>
                         </section>
                     </section>
@@ -70,6 +82,7 @@ class App extends React.Component {
             </div>
         )
     }
+
 
     handleSubmit(event) {
         event.preventDefault();
@@ -97,6 +110,7 @@ class App extends React.Component {
             .catch(reason => console.log)
     }
 
+
     handleRepositoryClick(event) {
         event.preventDefault()
 
@@ -104,6 +118,26 @@ class App extends React.Component {
         const {url} = target.dataset
 
         window.location.href = url
+    }
+
+
+    handleRepositoriesVisibilityClick(event) {
+        event.preventDefault()
+
+        const {target} = event
+
+        const {value} = target.dataset
+
+        const listButton = target.closest('.list-button')
+
+        const currentActivebutton = listButton.querySelector('button.active')
+        if (!!currentActivebutton) currentActivebutton.classList.remove('active')
+
+        target.classList.add('active')
+
+        this.updateRepositoriesVisibility(value)
+
+        App.toggleRepositoriesVisibility()
     }
 
 
@@ -120,6 +154,13 @@ class App extends React.Component {
         if (!repositories) repositories = {}
         localStorage.setItem(App.KEY_REPOSITORIES_CACHE, JSON.stringify(repositories))
         this.setState({repositories})
+    }
+
+
+    updateRepositoriesVisibility(repositoriesVisibility = 'all') {
+        console.log('App : updateRepositoriesVisibility()', {repositoriesVisibility})
+        localStorage.setItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE, repositoriesVisibility)
+        this.setState({repositoriesVisibility})
     }
 
 
@@ -146,6 +187,31 @@ class App extends React.Component {
     static handleDocumentKeypress(event) {
         const {keyCode} = event
         if (27 === keyCode) App.showMainSection()
+    }
+
+
+    static toggleRepositoriesVisibility() {
+        let repositoriesVisibility = localStorage.getItem(App.KEY_REPOSITORIES_VISIBILITY_CACHE)
+        if (!repositoriesVisibility) return;
+
+        const repositories = document.querySelectorAll('.Repository')
+        for (let repository of repositories) {
+
+            const {isFork} = repository.dataset;
+
+            if ('owns' === repositoriesVisibility && "true" === isFork) {
+                repository.classList.add('hide')
+                continue
+            }
+
+            if ('forks' === repositoriesVisibility && "false" === isFork) {
+                repository.classList.add('hide')
+                continue
+            }
+
+            repository.classList.remove('hide')
+
+        }
     }
 
 }
