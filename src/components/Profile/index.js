@@ -12,7 +12,7 @@ function Profile(props) {
     const {
         login, id, node_id, avatar_url, gravatar_id, url, html_url, followers_url, following_url, gists_url, company,
         starred_url, subscriptions_url, organizations_url, repos_url, events_url, received_events_url, type, site_admin,
-        name, location, bio
+        name, location, bio, handleBackClick
     } = props
 
     const style = {
@@ -30,6 +30,9 @@ function Profile(props) {
             <div className="Profile-status">
                 {company ? <div className="company"><FontAwesomeIcon icon={faUsers}/>&nbsp;{company}</div> : null}
                 {location ? <div className="location"><FontAwesomeIcon icon={faMapMarkedAlt}/>&nbsp;{location}</div> : null}
+            </div>
+            <div className="Profile-footer">
+                <button onClick={handleBackClick}>Retour</button>
             </div>
         </article>
     )

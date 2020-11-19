@@ -62,7 +62,7 @@ class App extends React.Component {
                     </section>
                     <section className="App-section-portfolio hide">
                         <aside className="App-section-portfolio-profile">
-                            <Profile {...profile} />
+                            <Profile {...profile} handleBackClick={App.handleBackClick}/>
                         </aside>
                         <section className="App-section-portfolio-repositories">
                             <header className="App-section-portfolio-repositories-header">
@@ -212,6 +212,13 @@ class App extends React.Component {
             repository.classList.remove('hide')
 
         }
+    }
+
+
+    static handleBackClick(event) {
+        event.preventDefault()
+
+        App.showMainSection()
     }
 
 }
