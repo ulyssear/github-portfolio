@@ -5,6 +5,7 @@ import Repository from "../Repository";
 function Repositories(props) {
 
     let {repositories, handleRepositoryClick} = props
+    if (!repositories) repositories = []
     if ('string' === typeof repositories) repositories = JSON.parse(repositories)
 
     return (
