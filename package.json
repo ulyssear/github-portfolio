@@ -36,12 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "windows-start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "windows-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
-    "windows-test": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
-    "windows-eject": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts eject",
-    "windows-deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
