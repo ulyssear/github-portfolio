@@ -8,7 +8,7 @@ init:
 ifeq ($(detected_OS),Windows)
 	@set NODE_OPTIONS=--openssl-legacy-provider
 else
-	export NODE_OPTIONS="--openssl-legacy-provider"
+	@export NODE_OPTIONS="--openssl-legacy-provider"
 endif
 
 install:
