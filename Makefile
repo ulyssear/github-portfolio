@@ -1,23 +1,10 @@
-ifeq ($(OS),Windows_NT) 
-    detected_OS := Windows
-else
-    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
-endif
-
-init:
-ifeq ($(detected_OS),Windows)
-	@set NODE_OPTIONS=--openssl-legacy-provider
-else
-	@export NODE_OPTIONS="--openssl-legacy-provider"
-endif
-
 install:
 	yarn install
 
 pre-deploy:
 	yarn build
 
-deploy:
+deploy: init
 	yarn deploy
 
 ssh-key:
