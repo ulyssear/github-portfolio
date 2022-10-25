@@ -1,14 +1,14 @@
 install:
-	yarn install
+	npm install
 
 pre-deploy:
-	yarn build
+	npm run build
 
-deploy: init
-	yarn deploy
+deploy:
+	npm run deploy
 
 ssh-key:
 	ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f "gh-pages"
 
 test:
-	yarn test
+	npm test
