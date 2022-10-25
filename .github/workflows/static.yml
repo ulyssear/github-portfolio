@@ -1,43 +1,27 @@
-name: Deploy React Application
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - "master"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build_test:
-    # The type of runner that the job will run on
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: build
-      - run: npm ci
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: test
-      - name: deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./public       
+    - id: build-publish
+      uses: "bitovi/github-actions-react-to-ghp@v1.1.1"
+      with:
+        github_token: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
+        build_command: "yarn build"
+        publish_dir: "public"
+        publish_branch: "gh-pages"
+        publish_message: "Deploying to GitHub Pages"
+        publish_name: "GitHub Actions"
+        publish_email: "ulysse@arnaud.tech"
