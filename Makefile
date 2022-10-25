@@ -14,7 +14,7 @@ endif
 install:
 	yarn install
 
-build:
+pre-deploy:
 	yarn build
 
 deploy:
