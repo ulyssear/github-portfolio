@@ -26,10 +26,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: npm ci, build and test
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: build
       - run: npm ci
-      - run: yarn build
-      - run: yarn test
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: test
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
