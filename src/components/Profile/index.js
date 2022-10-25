@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './index.css'
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -9,9 +11,10 @@ function Profile(props) {
 
     console.log('Profile', {props})
 
+    // id, node_id, gravatar_id, url, followers_url, following_url, gists_url,
+    // starred_url, subscriptions_url, organizations_url, repos_url, events_url, received_events_url, type, site_admin,
     const {
-        login, id, node_id, avatar_url, gravatar_id, url, html_url, followers_url, following_url, gists_url, company,
-        starred_url, subscriptions_url, organizations_url, repos_url, events_url, received_events_url, type, site_admin,
+        login, avatar_url, html_url, company,
         name, location, bio, handleBackClick, hireable, email
     } = props
 
@@ -34,7 +37,7 @@ function Profile(props) {
                 {location ? <div className="location"><FontAwesomeIcon icon={faMapMarkedAlt}/>&nbsp;{location}</div> : null}
             </div>
             <div className="Profile-links">
-                <a href="#" className="active">Repositories</a>
+                <a href="javascript:void(0)" className="active">Repositories</a>
             </div>
             <div className="Profile-footer">
                 <button onClick={handleBackClick}>Back</button>

@@ -57,7 +57,7 @@ class App extends React.Component {
                                     <input type="text" name="username" id="username" placeholder=" "/>
                                     <label htmlFor="username">Pseudo Github</label>
                                 </div>
-                                <button role="button" type="submit" name="submit_github_profile"
+                                <button type="submit" name="submit_github_profile"
                                         onClick={this.handleSubmit}>
                                     <FontAwesomeIcon icon={faArrowCircleRight}/>
                                 </button>
