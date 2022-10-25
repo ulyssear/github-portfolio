@@ -19,3 +19,6 @@ build:
 
 deploy:
 	yarn deploy
+
+ssh-key:
+	ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f "gh-pages"
