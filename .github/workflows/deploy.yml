@@ -26,9 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn install
-      - run: yarn build
-      - run: yarn test
+      - run: make install
+      - run: make build
+      # - run: make test
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
