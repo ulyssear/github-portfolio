@@ -1,6 +1,6 @@
 {
-  "name": "react-github-portfolio",
-  "homepage": "https://ulyssearnaud-ipssi.github.io/react-github-portfolio/",
+  "name": "github-portfolio",
+  "homepage": "https://ulyssear.github.io/github-portfolio/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
