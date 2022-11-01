@@ -22,7 +22,7 @@
     <a href="https://github.com/ulyssear/github-portfolio"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/ulyssear/github-portfolio">View Demo</a>
+    <a href="https://ulyssear.github.io/github-portfolio/">View Demo</a>
     ·
     <a href="https://github.com/ulyssear/github-portfolio/issues">Report Bug</a>
     ·
