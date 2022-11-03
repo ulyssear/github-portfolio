@@ -118,6 +118,17 @@ Github portfolio is a simple project to get a github portfolio in a few seconds.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+If you're using it locally, you have to start the project via `npm run start`. The project will be served on `localhost:8000`.
+
+_Preview of homepage_
+![image](https://user-images.githubusercontent.com/11415595/199717682-a3631e45-3e0c-4ccd-8b7c-544b18ba58b5.png)
+An input is available to retrieve pieces of information about a user, or an organization. For example, `ulyssear` can be typed to get information about me.
+
+_Preview of an example portfolio_
+![image](https://user-images.githubusercontent.com/11415595/199718123-836858f1-18ee-4c87-ab89-abb046dbe9be.png)
+A tab is available on the sidebar in which the public repositories are shown. A filter tab is also there to catch fork and owner repositories.
+
+
 <!-- TODO : ADD examples -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
